@@ -22,12 +22,12 @@ public class ProjectManagerComponent {
     }
 
     public void render(GuiGraphics gui, Font font, int mouseX, int mouseY) {
-        // Deep Slate panel background
-        gui.fill(x, y, x + w, y + h, 0xEE0F172A);
-        gui.renderOutline(x - 1, y - 1, w + 2, h + 2, 0xFF00E5FF);
+        // Dark Gray panel background
+        gui.fill(x, y, x + w, y + h, 0xFF353535);
+        gui.renderOutline(x - 1, y - 1, w + 2, h + 2, 0xFF888888);
 
-        gui.drawString(font, "PROJECTS", x + 5, y + 5, 0x00E5FF, false);
-        gui.fill(x + 5, y + 15, x + w - 5, y + 16, 0x22FFFFFF);
+        gui.drawString(font, "PROJECTS", x + 5, y + 5, 0xFFFFFFFF, false);
+        gui.fill(x + 5, y + 15, x + w - 5, y + 16, 0xFF888888);
 
         int itemY = y + 20;
         for (int i = scrollOffset; i < projectNames.size(); i++) {
@@ -36,10 +36,12 @@ public class ProjectManagerComponent {
 
             String name = projectNames.get(i);
             boolean isHovered = mouseX >= x + 5 && mouseX <= x + w - 5 && mouseY >= itemY && mouseY <= itemY + 12;
-            int color = name.equals(selectedProject) ? 0xFF00E5FF : (isHovered ? 0xFFFFFFFF : 0xAAFFFFFF);
+            int color = 0xFFFFFFFF; // Always white text
 
             if (name.equals(selectedProject)) {
-                gui.fill(x + 2, itemY, x + w - 2, itemY + 12, 0x3300E5FF);
+                gui.fill(x + 2, itemY, x + w - 2, itemY + 12, 0xFF555555); // Selected Gray
+            } else if (isHovered) {
+                gui.fill(x + 2, itemY, x + w - 2, itemY + 12, 0xFF444444); // Hover Gray
             }
 
             gui.drawString(font, name, x + 8, itemY + 2, color, false);

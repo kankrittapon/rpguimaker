@@ -42,6 +42,11 @@ public class DynamicRuntimeScreen extends Screen {
             gui.drawString(this.font, el.id, el.x, el.y, el.color, false);
         } else if (el.type.equals("image")) {
             gui.blit(rl, el.x, el.y, 0, 0, el.w, el.h, el.w, el.h);
+        } else if (el.type.equals("gecko")) {
+            // Placeholder for GeckoLib rendering
+            gui.fill(el.x, el.y, el.x + el.w, el.y + el.h, 0xFF550055);
+            gui.drawCenteredString(this.font, "GECKO: " + (el.model != null ? el.model : "None"),
+                    el.x + el.w / 2, el.y + el.h / 2 - 4, 0xFFEEAAAA);
         }
     }
 
